@@ -22,11 +22,11 @@ ADD haproxy.cfg.tmpl /consul-template/
 
 ADD reload-config /usr/local/bin/
 
+ADD cont-init.d /etc/cont-init.d/
+
 ADD haproxy /etc/services.d/haproxy/
 
 ADD router /etc/services.d/router/
-
-ADD 00-haproxy.init /etc/cont-init.d/
 
 EXPOSE 80
 
