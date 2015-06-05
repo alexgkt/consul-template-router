@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+# launch haproxy with default config file
+exec consul-template -consul ${CONSUL_URL} -template "/consul-template/haproxy.cfg.tmpl:/consul-template/haproxy.cfg" -once
+
