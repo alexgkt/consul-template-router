@@ -1,4 +1,3 @@
-#FROM asteris/consul-template:latest
 FROM justcontainers/base-alpine
 MAINTAINER Alex Goh <alex.goh@commercecraft.com.my>
 
@@ -20,6 +19,8 @@ RUN apk update --repositories-file /tmp/new_repo
 RUN apk add --repositories-file /tmp/new_repo haproxy openssl-dev
 
 ADD haproxy.cfg.tmpl /consul-template/
+
+ADD reload-config /usr/local/bin/
 
 ADD haproxy /etc/services.d/haproxy/
 
