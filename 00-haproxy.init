@@ -1,5 +1,4 @@
 #!/usr/bin/with-contenv sh
 
-# generate a file from a template for haproxy and launch haproxy with the new config file
-exec consul-template -consul ${CONSUL_URL} -template /consul-template/haproxy.cfg.tmpl:/consul-template/haproxy.cfg -once
-exec haproxy -f /consul-template/haproxy.cfg -p /var/run/haproxy.pid -D
+# launch haproxy with default config file
+exec haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -D
