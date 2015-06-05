@@ -2,5 +2,6 @@
 
 # launch consul-template and hook up a graceful haproxy restart (from haproxy docs)
 exec consul-template -consul ${CONSUL_URL} \
-	-template "/consul-template/haproxy.cfg.tmpl:/consul-template/haproxy.cfg:haproxy -f /consul-template/haproxy.cfg -p /var/run/haproxy.pid -st $(cat /var/run/haproxy.pid)"
+        -log-level info \
+	-template "/consul-template/haproxy.cfg.tmpl:/consul-template/haproxy.cfg:s6-svc -h /var/run/s6/services/haproxy"
 

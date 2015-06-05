@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv sh
+
+# launch consul-template and hook up a graceful haproxy restart (from haproxy docs)
+exec haproxy -f /consul-template/haproxy.cfg -p /var/run/haproxy.pid -st $(cat /var/run/haproxy.pid)
+

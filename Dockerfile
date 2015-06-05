@@ -21,6 +21,8 @@ RUN apk add --repositories-file /tmp/new_repo haproxy openssl-dev
 
 ADD haproxy.cfg.tmpl /consul-template/
 
+ADD haproxy /etc/services.d/haproxy/
+
 ADD router /etc/services.d/router/
 
 ADD 00-haproxy.init /etc/cont-init.d/
