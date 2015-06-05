@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv sh
+
+# generate a file from a template for haproxy to pick up
+exec haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -D

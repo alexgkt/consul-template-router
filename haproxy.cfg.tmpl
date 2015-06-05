@@ -1,0 +1,22 @@
+defaults
+   mode http
+   timeout client  5000ms
+
+frontend  http
+   bind *:80
+   option http-server-close
+   option forwardfor header X-Real-IP
+
+   {{ range service "web" }}
+     acl host_{{ .Port }} hdr(host) -i{{ range .Tags }} {{ . }}{{ end }}
+     use_backend {{ .Port }}_cluster if host_{{ .Port }}
+   {{ end }}
+
+{{ range service "web" }}
+backend {{ .Port }}_cluster
+  timeout connect 5000ms
+  timeout server  5000ms
+  balance leastconn
+  cookie PSESSID prefix
+  server {{ .Name }}.{{ .Port }} {{ .Address }}:{{ .Port }} cookie A check
+{{ end }}
